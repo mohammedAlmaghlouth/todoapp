@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/features/tasks/presentation/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
@@ -58,8 +59,10 @@ class TasksScreen extends StatelessWidget {
               Container(
                 height: MediaQuery.of(context).size.height * 0.8,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const TasksList(),
               ),
             ],
           ),
