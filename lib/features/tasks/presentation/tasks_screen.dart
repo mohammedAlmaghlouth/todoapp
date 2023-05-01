@@ -3,22 +3,19 @@ import 'package:todoapp/features/tasks/model/task.dart';
 import 'package:todoapp/features/tasks/presentation/add_task_pop.dart';
 import 'package:todoapp/features/tasks/presentation/tasks_list.dart';
 
-class TasksScreen extends StatelessWidget {
-  TasksScreen({super.key});
+class TasksScreen extends StatefulWidget {
+  const TasksScreen({super.key});
 
+  @override
+  State<TasksScreen> createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
   List<Task> tasksObjects = [
-    Task(
-      taskTitle: 'Go Shopping',
-    ),
-    Task(
-      taskTitle: 'Rent Car',
-    ),
-    Task(
-      taskTitle: 'Study 326 Quiz',
-    ),
-    Task(
-      taskTitle: 'End Ammar tutorial',
-    ),
+    Task(taskTitle: 'Go Shopping'),
+    Task(taskTitle: 'Rent Car'),
+    Task(taskTitle: 'Study 326 Quiz'),
+    Task(taskTitle: 'End Ammar tutorial'),
   ];
 
   @override
@@ -36,7 +33,17 @@ class TasksScreen extends StatelessWidget {
                   padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom,
                   ),
-                  child: const AddTaskPop(),
+                  child: AddTaskPop(
+                    addTaskFunction: (newTaskTitle) {
+                      setState(
+                        () {
+                          tasksObjects.add(
+                            Task(taskTitle: newTaskTitle!),
+                          );
+                        },
+                      );
+                    },
+                  ),
                 ),
               );
             },

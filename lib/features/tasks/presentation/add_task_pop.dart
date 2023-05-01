@@ -1,10 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
 class AddTaskPop extends StatelessWidget {
-  const AddTaskPop({super.key});
+  const AddTaskPop({
+    Key? key,
+    required this.addTaskFunction,
+  }) : super(key: key);
+  final Function(String?) addTaskFunction;
 
   @override
   Widget build(BuildContext context) {
+    String? newTaskTitle;
     return Container(
       padding: const EdgeInsets.all(30),
       child: Column(
@@ -19,15 +25,21 @@ class AddTaskPop extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          const TextField(
+          TextField(
             autofocus: true,
             textAlign: TextAlign.center,
+            onChanged: (newText) {
+              newTaskTitle = newText;
+            },
           ),
           const SizedBox(
             height: 10,
           ),
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                addTaskFunction(newTaskTitle);
+                Navigator.pop(context);
+              },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.teal[400],
                 foregroundColor: Colors.white,
