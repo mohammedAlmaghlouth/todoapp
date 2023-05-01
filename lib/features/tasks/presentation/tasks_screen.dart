@@ -1,9 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp/features/tasks/model/task.dart';
 import 'package:todoapp/features/tasks/presentation/add_task_pop.dart';
 import 'package:todoapp/features/tasks/presentation/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
-  const TasksScreen({super.key});
+  TasksScreen({super.key});
+
+  List<Task> tasksObjects = [
+    Task(
+      taskTitle: 'Go Shopping',
+    ),
+    Task(
+      taskTitle: 'Rent Car',
+    ),
+    Task(
+      taskTitle: 'Study 326 Quiz',
+    ),
+    Task(
+      taskTitle: 'End Ammar tutorial',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +95,7 @@ class TasksScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: const TasksList(),
+                  child: TasksList(tasks: tasksObjects),
                 ),
               ],
             ),
