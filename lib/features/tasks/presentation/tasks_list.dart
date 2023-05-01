@@ -7,25 +7,14 @@ class TasksList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        TaskTile(
-          taskTitle: tasksObjects[0].taskTitle,
-          isChecked: tasksObjects[0].isChecked,
-        ),
-        TaskTile(
-          taskTitle: tasksObjects[1].taskTitle,
-          isChecked: tasksObjects[1].isChecked,
-        ),
-        TaskTile(
-          taskTitle: tasksObjects[2].taskTitle,
-          isChecked: tasksObjects[2].isChecked,
-        ),
-        TaskTile(
-          taskTitle: tasksObjects[3].taskTitle,
-          isChecked: tasksObjects[3].isChecked,
-        ),
-      ],
+    return ListView.builder(
+      itemCount: tasksObjects.length,
+      itemBuilder: (context, index) {
+        return TaskTile(
+          taskTitle: tasksObjects[index].taskTitle,
+          isChecked: tasksObjects[index].isChecked,
+        );
+      },
     );
   }
 }
