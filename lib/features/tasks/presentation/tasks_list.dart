@@ -23,6 +23,9 @@ class TasksList extends StatelessWidget {
               changeChecked: (newValue) {
                 taskData.changeBool(taskData.tasks[index]);
               },
+              deleteTask: () {
+                taskData.deleteTask(taskData.tasks[index]);
+              },
             );
           },
         );

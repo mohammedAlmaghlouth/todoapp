@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 
 class TaskTile extends StatelessWidget {
   const TaskTile({
-    super.key,
+    Key? key,
     required this.taskTitle,
     required this.isChecked,
     required this.changeChecked,
-  });
+    required this.deleteTask,
+  }) : super(key: key);
   final String taskTitle;
   final bool? isChecked;
   final void Function(bool?) changeChecked;
+  final void Function() deleteTask;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class TaskTile extends StatelessWidget {
         value: isChecked,
         onChanged: changeChecked,
       ),
+      onLongPress: deleteTask,
     );
   }
 }

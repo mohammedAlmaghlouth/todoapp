@@ -5,8 +5,8 @@ class TaskData extends ChangeNotifier {
   List<Task> tasks = [
     Task(taskTitle: 'Go Shopping'),
     Task(taskTitle: 'Rent Car'),
-    Task(taskTitle: 'Study 326 Quiz'),
-    Task(taskTitle: 'End Ammar tutorial'),
+    Task(taskTitle: 'Study Quiz 4'),
+    Task(taskTitle: 'Call Appointment'),
   ];
 
   void addTask(String) {
@@ -18,6 +18,11 @@ class TaskData extends ChangeNotifier {
 
   void changeBool(Task task) {
     task.changeCheck();
+    notifyListeners();
+  }
+
+  void deleteTask(Task task) {
+    tasks.remove(task);
     notifyListeners();
   }
 }
