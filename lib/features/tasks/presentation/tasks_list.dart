@@ -21,11 +21,7 @@ class TasksList extends StatelessWidget {
               taskTitle: taskData.tasks[index].taskTitle,
               isChecked: taskData.tasks[index].isChecked,
               changeChecked: (newValue) {
-                // setState(
-                //   () {
-                //     widget.tasks[index].changeCheck();
-                //   },
-                // );
+                taskData.changeBool(taskData.tasks[index]);
               },
             );
           },

@@ -15,4 +15,9 @@ class TaskData extends ChangeNotifier {
     );
     notifyListeners();
   }
+
+  void changeBool(Task task) {
+    task.changeCheck();
+    notifyListeners();
+  }
 }
