@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/features/tasks/model/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoapp/features/tasks/data/task_data.dart';
 import 'package:todoapp/features/tasks/presentation/add_task_pop.dart';
 import 'package:todoapp/features/tasks/presentation/tasks_list.dart';
 
-class TasksScreen extends StatefulWidget {
+class TasksScreen extends StatelessWidget {
   const TasksScreen({super.key});
 
-  @override
-  State<TasksScreen> createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasksObjects = [
-    Task(taskTitle: 'Go Shopping'),
-    Task(taskTitle: 'Rent Car'),
-    Task(taskTitle: 'Study 326 Quiz'),
-    Task(taskTitle: 'End Ammar tutorial'),
-  ];
-
+  // List<Task> tasksObjects = [
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,17 +23,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom,
                   ),
-                  child: AddTaskPop(
-                    addTaskFunction: (newTaskTitle) {
-                      setState(
-                        () {
-                          tasksObjects.add(
-                            Task(taskTitle: newTaskTitle!),
-                          );
-                        },
-                      );
-                    },
-                  ),
+                  child: const AddTaskPop(),
                 ),
               );
             },
@@ -86,9 +66,9 @@ class _TasksScreenState extends State<TasksScreen> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  '4 Tasks',
-                  style: TextStyle(
+                Text(
+                  '${Provider.of<TaskData>(context).tasks.length} Tasks',
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20,
                   ),
@@ -102,7 +82,7 @@ class _TasksScreenState extends State<TasksScreen> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  child: TasksList(tasks: tasksObjects),
+                  child: const TasksList(),
                 ),
               ],
             ),

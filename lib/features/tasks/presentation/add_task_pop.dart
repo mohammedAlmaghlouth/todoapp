@@ -1,12 +1,12 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoapp/features/tasks/data/task_data.dart';
 
 class AddTaskPop extends StatelessWidget {
   const AddTaskPop({
     Key? key,
-    required this.addTaskFunction,
   }) : super(key: key);
-  final Function(String?) addTaskFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +36,20 @@ class AddTaskPop extends StatelessWidget {
             height: 10,
           ),
           TextButton(
-              onPressed: () {
-                addTaskFunction(newTaskTitle);
-                Navigator.pop(context);
-              },
-              style: TextButton.styleFrom(
-                backgroundColor: Colors.teal[400],
-                foregroundColor: Colors.white,
-              ),
-              child: const Text(
-                'Add',
-                textAlign: TextAlign.center,
-              )),
+            onPressed: () {
+              Provider.of<TaskData>(context, listen: false)
+                  .addTask(newTaskTitle);
+              Navigator.pop(context);
+            },
+            style: TextButton.styleFrom(
+              backgroundColor: Colors.teal[400],
+              foregroundColor: Colors.white,
+            ),
+            child: const Text(
+              'Add',
+              textAlign: TextAlign.center,
+            ),
+          ),
         ],
       ),
     );
